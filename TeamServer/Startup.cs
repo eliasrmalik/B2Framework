@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TeamServer.Services;
 
 namespace TeamServer
 {
@@ -31,6 +32,9 @@ namespace TeamServer
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TeamServer", Version = "v1" });
             });
+
+
+            services.AddSingleton<IListenerService, ListenerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

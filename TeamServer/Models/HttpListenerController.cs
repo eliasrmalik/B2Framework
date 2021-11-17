@@ -10,8 +10,10 @@ namespace TeamServer.Models
     public class HttpListenerController : ControllerBase
     {
 
-        public IActionResult 
-
+        public IActionResult HandleImplant()
+        {
+            return Ok("Success! Listener works");
+        }
 
     }
 }
