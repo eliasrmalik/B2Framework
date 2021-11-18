@@ -48,6 +48,23 @@ namespace TeamServer.Controllers
 
         }
 
+        [HttpDelete("{name}")]
+
+        public IActionResult StopListener(string name)
+        {
+
+            var listener = _listeners.GetListener(name);
+            if (listener is null) return NotFound();
+
+            listener.Stop();
+
+            //ToDo: Add code here to rejig the listener so its not just dead in the water
+
+            _listeners.RemoveListener(listener);
+
+            //204 http result
+            return NoContent();
+        }
 
     }
 }
