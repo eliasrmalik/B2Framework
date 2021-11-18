@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace TeamServer.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     public class ListenersController : ControllerBase
     {
         private readonly IListenerService _listeners;
@@ -31,6 +32,22 @@ namespace TeamServer.Controllers
             return Ok(listener);
         
         }
+
+        [HttpPost]
+        public IActionResult StartListener([FromBody] StartHttpListenerRequest request)
+        {
+            var listener = new HttpListener(request.Name, request.BindPort);
+            listener.Start();
+
+            _listeners.AddLisenter(listener);
+
+            var root = $"{ HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            var path = $"{root}/{listener.Name}";
+
+            return Created(path, listener);
+
+        }
+
 
     }
 }
