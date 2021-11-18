@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApiModels.Requests
 {
-    internal class StartHttpListenerRequest
+    public class StartHttpListenerRequest
     {
         public string Name { get; set; }
         public int BindPort { get; set; }
