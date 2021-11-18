@@ -34,9 +34,9 @@ namespace TeamServer.Models
             
             }
 
-            // var tasks = agent.GetPendingTasks();
+            var tasks = agent.GetPendingTasks();
 
-            return Ok("Success! Listener works");
+            return Ok(tasks);
         }
 
         private AgentMetadata ExtractMetadata(IHeaderDictionary headers) 
