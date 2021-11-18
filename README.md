@@ -1,5 +1,7 @@
 # B2Framework
-Budget C2 being written in .NET
+B for Budget. 
+
+Basic C2 being written in .NET
 
 
 # TBC
