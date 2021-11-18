@@ -42,6 +42,7 @@ namespace TeamServer.Models
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton(AgentService);
         }
 
         private void ConfigureApp(IApplicationBuilder app)

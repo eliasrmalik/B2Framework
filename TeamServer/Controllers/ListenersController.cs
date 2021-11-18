@@ -10,6 +10,7 @@ namespace TeamServer.Controllers
     public class ListenersController : ControllerBase
     {
         private readonly IListenerService _listeners;
+        private readonly IAgentService _agentService;
 
         public ListenersController(IListenerService listeners)
         {
@@ -37,6 +38,7 @@ namespace TeamServer.Controllers
         public IActionResult StartListener([FromBody] StartHttpListenerRequest request)
         {
             var listener = new HttpListener(request.Name, request.BindPort);
+            listener.init(_agentService);
             listener.Start();
 
             _listeners.AddListener(listener);

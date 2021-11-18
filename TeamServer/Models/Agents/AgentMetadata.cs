@@ -9,7 +9,7 @@
 
         public string ProcessId { get; set;}
 
-        public string Integrity { get; set }
+        public string Integrity { get; set; }
 
         public string Architecture { get; set; }
     }
