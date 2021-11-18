@@ -5,7 +5,32 @@ using System.Threading.Tasks;
 
 namespace TeamServer.Controllers
 {
-    public class ListenersController
+    [ApiController]
+    public class ListenersController : ControllerBase
     {
+        private readonly IListenerService _listeners;
+
+        public ListenersControllewr(IListenerService listeners)
+        {
+            _listeners = listeners;
+        }
+
+        [HttpGet]
+        public IActionResult GetListeners()
+        { 
+            var listeners = _listeners.GetListeners();
+            return Ok(listeners);
+        }
+
+        [HttpGet("{name}")]
+        public IActionResult GetListener(string name) {
+        
+            var listeners = _listeners.GetListener(name);
+            if (listeners is null) return NotFound();
+
+            return Ok(listener);
+        
+        }
+
     }
 }

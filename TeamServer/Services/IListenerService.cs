@@ -28,7 +28,7 @@ namespace TeamServer.Services
 
         public void AddListener(Listener listener)
         {
-            _listeners.Add(listener);            throw new NotImplementedException();
+            _listeners.Add(listener);       
 
         }
 
