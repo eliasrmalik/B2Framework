@@ -44,7 +44,7 @@ namespace TeamServer.Services
 
         public void RemoveListener(Listener listener)
         {
-            _listeners.Remove(Listener);
+            _listeners.Remove(listener);
         }
     }
 
