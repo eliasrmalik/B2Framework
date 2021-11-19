@@ -19,10 +19,15 @@ namespace Agent
 
         static void Main(string[] args)
         {
+            //Time for the teamserver to spin up before Agent goes wild
+            Thread.Sleep(20000);
+
             GenerateMetadata();
             _commModule = new HttpCommModule("localhost", 8080);
             _commModule.Init(_metadata);
             _commModule.Start();
+
+            _tokenSource = new CancellationTokenSource();
 
             while (!_tokenSource.IsCancellationRequested)
             {

