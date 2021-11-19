@@ -51,6 +51,7 @@ namespace TeamServer.Models
                 }
 
                 var results = JsonConvert.DeserializeObject<IEnumerable<AgentTaskResult>>(json);
+                agent.AddTaskResults(results);
             
             }
 
