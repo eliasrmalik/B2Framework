@@ -32,13 +32,31 @@ namespace Agent
             while (!_tokenSource.IsCancellationRequested)
             {
                 if (_commModule.RecvData(out var tasks))
-                { 
+                {
                     // action tasks 
+                    HandleTasks(tasks);
                 
                 }
             
             }
 
+        }
+
+        private static void HandleTasks(IEnumerable<AgentTask> tasks)
+        {
+            foreach (var task in tasks)
+            {
+                HandleTask(task);
+            
+            }
+
+        }
+
+        private static void HandleTask(AgentTask task)
+        { 
+            
+
+        
         }
 
         public void Stop()
