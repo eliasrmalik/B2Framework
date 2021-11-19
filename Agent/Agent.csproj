@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\AgentCommand.cs" />
     <Compile Include="Models\AgentMetadata.cs" />
     <Compile Include="Models\AgentTask.cs" />
     <Compile Include="Models\AgentTaskResult.cs" />
@@ -55,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

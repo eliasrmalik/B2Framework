@@ -2,7 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using TeamServer.Models.Agents;
 using TeamServer.Services;
 
@@ -18,7 +22,7 @@ namespace TeamServer.Models
             _agents = agents;
         }
 
-        public IActionResult HandleImplant()
+        public async Task<IActionResult> HandleImplant()
         {
 
             var metadata = ExtractMetadata(HttpContext.Request.Headers);
@@ -35,6 +39,20 @@ namespace TeamServer.Models
             }
 
             agent.CheckIn();
+
+            if (HttpContext.Request.Method == "POST")
+            {
+                string json;
+
+                using (var sr = new StreamReader(HttpContext.Request.Body))
+                {
+                    json = await sr.ReadToEndAsync();
+                
+                }
+
+                var results = JsonConvert.DeserializeObject<IEnumerable<AgentTaskResult>>(json);
+            
+            }
 
             var tasks = agent.GetPendingTasks();
 
