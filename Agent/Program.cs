@@ -57,8 +57,15 @@ namespace Agent
 
         private static void HandleTask(AgentTask task)
         {
-            var command = _commands.FirstOrDefault(c => c.Name.Equals(task.Command));
-            if (command is null) return;
+            var command = _commands.FirstOrDefault(c => c.Name.Equals(task.Command, StringComparison.OrdinalIgnoreCase));
+            if (command is null)
+            {
+
+                SendTaskResult(task.Id, "Command not found.");
+                return;
+
+
+            }
 
 
             try
