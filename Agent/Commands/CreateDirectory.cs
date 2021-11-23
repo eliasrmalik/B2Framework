@@ -18,7 +18,7 @@ namespace Agent.Commands
 
             if (task.Arguments is null || task.Arguments.Length == 0)
             {
-                path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                return "No path provided";
 
             }
             else
