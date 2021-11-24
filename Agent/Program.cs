@@ -22,7 +22,7 @@ namespace Agent
         static void Main(string[] args)
         {
             //Time for the teamserver to spin up before Agent goes wild
-            Thread.Sleep(20000);
+            Thread.Sleep(30000);
 
             GenerateMetadata();
             LoadAgentCommands();
