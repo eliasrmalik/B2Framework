@@ -14,6 +14,12 @@ namespace TeamServer.Controllers
     {
         private readonly IAgentService _agents;
 
+        public AgentsController(IAgentService agents)
+        {
+            _agents = agents;
+        }
+
+
         [HttpGet]
         public IActionResult GetAgents()
         { 
