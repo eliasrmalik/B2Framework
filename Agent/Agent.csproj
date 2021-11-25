@@ -52,6 +52,7 @@
     <Compile Include="Commands\ListProcesses.cs" />
     <Compile Include="Commands\MakeToken.cs" />
     <Compile Include="Commands\PrintWorkingDirectory.cs" />
+    <Compile Include="Commands\Rev2Self.cs" />
     <Compile Include="Commands\Run.cs" />
     <Compile Include="Commands\Shell.cs" />
     <Compile Include="Commands\TestCommand.cs" />
