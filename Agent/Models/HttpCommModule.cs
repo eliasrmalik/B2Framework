@@ -72,8 +72,7 @@ namespace Agent.Models
         private async Task PostData()
         {
 
-            var outbound = GetOutbound()
-                .Serialise();
+            var outbound = GetOutbound().Serialise();
 
             var content = new StringContent(Encoding.UTF8.GetString(outbound), Encoding.UTF8, "application/json");
             var response = await _client.PostAsync("/", content);
@@ -95,7 +94,7 @@ namespace Agent.Models
         private void HandleResponse(byte[] response)
         {
             var tasks = response.Deserialize<AgentTask[]>();
-            if (tasks != null & tasks.Any())
+            if (tasks != null && tasks.Any())
             {
                 foreach (var task in tasks)
                 {

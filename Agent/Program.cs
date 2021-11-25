@@ -75,6 +75,7 @@ namespace Agent
                 SendTaskResult(task.Id, result);
             }
             catch (Exception e)
+
             {
                 SendTaskResult(task.Id, e.Message);
             }
@@ -142,7 +143,7 @@ namespace Agent
             {
                 Id = Guid.NewGuid().ToString(),
                 Hostname = Environment.MachineName,
-                Username = Environment.UserName,
+                Username = identity.Name,
                 ProcessName = process.ProcessName,
                 ProcessId = process.Id,
                 Integrity = integrity,
