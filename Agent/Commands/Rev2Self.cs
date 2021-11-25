@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Agent.Commands
 {
-    internal class Rev2Self : AgentCommand
+    public class Rev2Self : AgentCommand
     {
         public override string Name => "rev2self";
 

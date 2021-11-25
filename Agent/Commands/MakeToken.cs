@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Agent.Commands
 {
-    internal class MakeToken : AgentCommand
+    public class MakeToken : AgentCommand
     {
         public override string Name => "make-token";
 
