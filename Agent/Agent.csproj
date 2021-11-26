@@ -65,6 +65,7 @@
     <Compile Include="Internal\Injector.cs" />
     <Compile Include="Internal\RemoteInjector.cs" />
     <Compile Include="Internal\SelfInjector.cs" />
+    <Compile Include="Internal\SpawnInjector.cs" />
     <Compile Include="Models\AgentCommand.cs" />
     <Compile Include="Models\AgentMetadata.cs" />
     <Compile Include="Models\AgentTask.cs" />
